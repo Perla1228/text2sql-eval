@@ -36,3 +36,6 @@ _*.py
 _*.json
 *.log
 refill_log.txt
+
+# 个人求职材料（不公开）
+简历与面试稿.md
