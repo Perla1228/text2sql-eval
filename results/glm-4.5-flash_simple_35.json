@@ -1,0 +1,13 @@
+{
+  "id": 35,
+  "difficulty": "medium",
+  "question": "食品生鲜下哪个商品销量最高",
+  "gold_sql": "select p.product_name from order_items oi join products p on oi.product_id = p.product_id join categories c on p.category_id = c.category_id join orders o on oi.order_id = o.order_id where c.category_name = '食品生鲜' AND o.status = '已完成' group by p.product_name order by sum(oi.quantity) desc limit 1",
+  "raw_output": "SELECT p.product_name, SUM(oi.quantity) AS total_quantity\nFROM products p\nJOIN order_items oi ON p.product_id = oi.product_id\nJOIN categories c ON p.category_id = c.category_id\nWHERE c.category_name = '食品生鲜'\nGROUP BY p.product_id, p.product_name\nORDER BY total_quantity DESC\nLIMIT 1;",
+  "pred_sql": "SELECT p.product_name, SUM(oi.quantity) AS total_quantity\nFROM products p\nJOIN order_items oi ON p.product_id = oi.product_id\nJOIN categories c ON p.category_id = c.category_id\nWHERE c.category_name = '食品生鲜'\nGROUP BY p.product_id, p.product_name\nORDER BY total_quantity DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_error": null
+}

@@ -1,0 +1,38 @@
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 密钥
+.env
+*.key
+
+# 数据与产出（大文件不入库）
+data/raw/
+data/biz_ecommerce.sqlite
+results/cache/
+outputs/
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 编辑器/系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 临时调试脚本与日志（不随仓库公开）
+scripts/_*.py
+_*.py
+_*.json
+*.log
+refill_log.txt

@@ -1,0 +1,13 @@
+{
+  "id": 20,
+  "difficulty": "medium",
+  "question": "25年8月新注册用户销售额多少",
+  "gold_sql": "select sum(total_amount) from orders o left join users u on o.user_id = u.user_id where u.register_date between '2025-08-01' and '2025-08-31' AND o.status = '已完成'",
+  "raw_output": "SELECT COALESCE(SUM(o.total_amount), 0)\nFROM users u\nJOIN orders o ON u.user_id = o.user_id\nWHERE strftime('%Y-%m', u.register_date) = '2025-08'\n  AND o.status = '已完成'",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COALESCE(SUM(o.total_amount), 0)\nFROM users u\nJOIN orders o ON u.user_id = o.user_id\nWHERE strftime('%Y-%m', u.register_date) = '2025-08'\n  AND o.status = '已完成'",
+  "pred_error": null
+}

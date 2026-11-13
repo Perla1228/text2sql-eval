@@ -1,0 +1,13 @@
+{
+  "id": 3,
+  "difficulty": "easy",
+  "question": "20-40岁用户有多少",
+  "gold_sql": "select COUNT(distinct user_id) FROM users WHERE age<=40 and age>=20",
+  "raw_output": "SELECT COUNT(*) \nFROM users \nWHERE age BETWEEN 20 AND 40",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(*) \nFROM users \nWHERE age BETWEEN 20 AND 40",
+  "pred_error": null
+}

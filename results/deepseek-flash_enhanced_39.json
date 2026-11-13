@@ -1,0 +1,13 @@
+{
+  "id": 39,
+  "difficulty": "hard",
+  "question": "退款次数最多的商品是哪个",
+  "gold_sql": "select p.product_name from refunds r left join order_items oi on r.order_id = oi.order_id left join products p on oi.product_id = p.product_id group by p.product_name order by count(distinct r.refund_id) desc limit 1",
+  "raw_output": "SELECT p.product_name\nFROM refunds r\nJOIN order_items oi ON r.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE r.status = '已退款'\nGROUP BY p.product_id, p.product_name\nORDER BY COUNT(DISTINCT r.refund_id) DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT p.product_name\nFROM refunds r\nJOIN order_items oi ON r.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE r.status = '已退款'\nGROUP BY p.product_id, p.product_name\nORDER BY COUNT(DISTINCT r.refund_id) DESC\nLIMIT 1;",
+  "pred_error": null
+}

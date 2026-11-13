@@ -1,0 +1,13 @@
+{
+  "id": 45,
+  "difficulty": "hard",
+  "question": "食品生鲜最受哪个区域用户喜欢",
+  "gold_sql": "select r.region_name from order_items oi join products p on oi.product_id = p.product_id join categories c on p.category_id = c.category_id join orders o on o.order_id = oi.order_id join users u on o.user_id = u.user_id join regions r on u.region_id = r.region_id where c.category_name = '食品生鲜' AND o.status = '已完成' group by r.region_name order by sum(oi.quantity) desc limit 1",
+  "raw_output": "SELECT r.region_name\nFROM orders o\nJOIN users u ON o.user_id = u.user_id\nJOIN regions r ON u.region_id = r.region_id\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories c ON p.category_id = c.category_id\nWHERE o.status = '已完成' AND c.category_name = '食品生鲜'\nGROUP BY r.region_name\nORDER BY SUM(oi.quantity) DESC\nLIMIT 1",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT r.region_name\nFROM orders o\nJOIN users u ON o.user_id = u.user_id\nJOIN regions r ON u.region_id = r.region_id\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories c ON p.category_id = c.category_id\nWHERE o.status = '已完成' AND c.category_name = '食品生鲜'\nGROUP BY r.region_name\nORDER BY SUM(oi.quantity) DESC\nLIMIT 1",
+  "pred_error": null
+}

@@ -1,0 +1,13 @@
+{
+  "id": 13,
+  "difficulty": "easy",
+  "question": "2025年8月有多少退款订单",
+  "gold_sql": "select count(distinct refund_id)  from refunds where status = '已退款' and refund_time between '2025-08-01' and '2025-08-31'",
+  "raw_output": "SELECT COUNT(DISTINCT order_id) AS refund_order_count\nFROM refunds\nWHERE status = '已退款'\n  AND strftime('%Y-%m', refund_time) = '2025-08';",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(DISTINCT order_id) AS refund_order_count\nFROM refunds\nWHERE status = '已退款'\n  AND strftime('%Y-%m', refund_time) = '2025-08';",
+  "pred_error": null
+}

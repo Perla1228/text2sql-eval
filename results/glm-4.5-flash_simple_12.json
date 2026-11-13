@@ -1,0 +1,13 @@
+{
+  "id": 12,
+  "difficulty": "easy",
+  "question": "退款订单量多少",
+  "gold_sql": "select count(distinct refund_id)  from refunds where status = '已退款'",
+  "raw_output": "SELECT COUNT(*) FROM refunds;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(*) FROM refunds;",
+  "pred_error": null
+}

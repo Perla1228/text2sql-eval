@@ -1,0 +1,13 @@
+{
+  "id": 4,
+  "difficulty": "easy",
+  "question": "各品类商品库存有多少",
+  "gold_sql": "select c.category_name, sum(p.stock) from products p join categories c on p.category_id = c.category_id group by c.category_name",
+  "raw_output": "SELECT c.category_name, SUM(p.stock) AS total_stock\nFROM products p\nJOIN categories c ON p.category_id = c.category_id\nGROUP BY c.category_name\nORDER BY c.category_name",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT c.category_name, SUM(p.stock) AS total_stock\nFROM products p\nJOIN categories c ON p.category_id = c.category_id\nGROUP BY c.category_name\nORDER BY c.category_name",
+  "pred_error": null
+}

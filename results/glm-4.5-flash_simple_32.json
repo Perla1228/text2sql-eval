@@ -1,0 +1,13 @@
+{
+  "id": 32,
+  "difficulty": "medium",
+  "question": "各个地区的25年8月新注册用户分布情况",
+  "gold_sql": "select r.region_name, count(distinct u.user_id) from users u left join regions r on u.region_id = r.region_id where u.register_date between '2025-08-01' and '2025-08-31' group by r.region_name",
+  "raw_output": "SELECT r.region_name, COUNT(u.user_id) as user_count\nFROM users u\nJOIN regions r ON u.region_id = r.region_id\nWHERE strftime('%Y-%m', u.register_date) = '2025-08'\nGROUP BY r.region_name\nORDER BY r.region_name",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT r.region_name, COUNT(u.user_id) as user_count\nFROM users u\nJOIN regions r ON u.region_id = r.region_id\nWHERE strftime('%Y-%m', u.register_date) = '2025-08'\nGROUP BY r.region_name\nORDER BY r.region_name",
+  "pred_error": null
+}

@@ -1,0 +1,13 @@
+{
+  "id": 38,
+  "difficulty": "hard",
+  "question": "不同年龄段用户的客单价分布情况",
+  "gold_sql": "select case\n  when u.age between 18 and 25 then '18-25岁'\n  when u.age between 26 and 35 then '26-35岁'\n  when u.age between 36 and 45 then '36-45岁'\n  when u.age between 46 and 60 then '46-60岁'\n  else '60岁以上'\nend as age_bucket,\n  sum(o.total_amount) / count(distinct o.order_id) as avg_order_value\nfrom orders o left join users u on o.user_id = u.user_id\nwhere o.status = '已完成'\ngroup by age_bucket\norder by age_bucket",
+  "raw_output": "SELECT \n    CASE \n        WHEN age BETWEEN 18 AND 25 THEN '18-25岁'\n        WHEN age BETWEEN 26 AND 35 THEN '26-35岁'\n        WHEN age BETWEEN 36 AND 45 THEN '36-45岁'\n        WHEN age BETWEEN 46 AND 55 THEN '46-55岁'\n        WHEN age >= 56 THEN '56岁以上'\n        ELSE '未知年龄段'\n    END AS age_group,\n    COUNT(DISTINCT user_id) AS user_count,\n    COUNT(DISTINCT order_id) AS order_count,\n    SUM(total_amount) AS total_sales,\n    SUM(total_amount) / COUNT(DISTINCT order_id) AS avg_transaction_value\nFROM \n    users\nJOIN \n    orders ON users.user_id = orders.user_id\nWHERE \n    orders.status = '已完成'\nGROUP BY \n    age_group\nORDER BY \n    age_group;",
+  "valid_sql": false,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT \n    CASE \n        WHEN age BETWEEN 18 AND 25 THEN '18-25岁'\n        WHEN age BETWEEN 26 AND 35 THEN '26-35岁'\n        WHEN age BETWEEN 36 AND 45 THEN '36-45岁'\n        WHEN age BETWEEN 46 AND 55 THEN '46-55岁'\n        WHEN age >= 56 THEN '56岁以上'\n        ELSE '未知年龄段'\n    END AS age_group,\n    COUNT(DISTINCT user_id) AS user_count,\n    COUNT(DISTINCT order_id) AS order_count,\n    SUM(total_amount) AS total_sales,\n    SUM(total_amount) / COUNT(DISTINCT order_id) AS avg_transaction_value\nFROM \n    users\nJOIN \n    orders ON users.user_id = orders.user_id\nWHERE \n    orders.status = '已完成'\nGROUP BY \n    age_group\nORDER BY \n    age_group;",
+  "pred_error": "ambiguous column name: user_id"
+}

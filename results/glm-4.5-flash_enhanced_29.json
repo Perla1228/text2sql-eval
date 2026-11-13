@@ -1,0 +1,13 @@
+{
+  "id": 29,
+  "difficulty": "medium",
+  "question": "每月各商品的销售金额",
+  "gold_sql": "select substr(o.order_time, 1, 7) as month, p.product_name, sum(oi.subtotal) from orders o join order_items oi on o.order_id = oi.order_id join products p on oi.product_id = p.product_id where o.status = '已完成' group by 1, 2",
+  "raw_output": "SELECT strftime('%Y-%m', o.order_time) AS month, p.product_id, p.product_name, SUM(oi.subtotal) AS sales_amount\nFROM orders o\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE o.status = '已完成'\nGROUP BY strftime('%Y-%m', o.order_time), p.product_id, p.product_name\nORDER BY month, sales_amount DESC",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT strftime('%Y-%m', o.order_time) AS month, p.product_id, p.product_name, SUM(oi.subtotal) AS sales_amount\nFROM orders o\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE o.status = '已完成'\nGROUP BY strftime('%Y-%m', o.order_time), p.product_id, p.product_name\nORDER BY month, sales_amount DESC",
+  "pred_error": null
+}

@@ -1,0 +1,13 @@
+{
+  "id": 19,
+  "difficulty": "medium",
+  "question": "对比下不同渠道销售额情况",
+  "gold_sql": "select c.channel_name, sum(o.total_amount) from orders o left join channels c on o.channel_id = c.channel_id where o.status = '已完成' group by 1",
+  "raw_output": "SELECT c.channel_name, SUM(o.total_amount) AS total_sales\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE o.status = '已完成'\nGROUP BY c.channel_name",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT c.channel_name, SUM(o.total_amount) AS total_sales\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE o.status = '已完成'\nGROUP BY c.channel_name",
+  "pred_error": null
+}

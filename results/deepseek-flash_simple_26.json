@@ -1,0 +1,13 @@
+{
+  "id": 26,
+  "difficulty": "medium",
+  "question": "男性用户最喜欢购买的商品是什么",
+  "gold_sql": "select p.product_name from order_items oi join products p on oi.product_id = p.product_id join orders o on oi.order_id = o.order_id join users u on o.user_id = u.user_id where u.gender = '男' AND o.status = '已完成' group by p.product_name order by sum(oi.quantity) desc limit 1",
+  "raw_output": "SELECT p.product_name\nFROM order_items oi\nJOIN orders o ON oi.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE u.gender = '男' AND o.status = '已完成'\nGROUP BY p.product_id, p.product_name\nORDER BY SUM(oi.quantity) DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT p.product_name\nFROM order_items oi\nJOIN orders o ON oi.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE u.gender = '男' AND o.status = '已完成'\nGROUP BY p.product_id, p.product_name\nORDER BY SUM(oi.quantity) DESC\nLIMIT 1;",
+  "pred_error": null
+}

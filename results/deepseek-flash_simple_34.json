@@ -1,0 +1,13 @@
+{
+  "id": 34,
+  "difficulty": "medium",
+  "question": "因为质量问题退货最多的商品是哪个",
+  "gold_sql": "select p.product_name from refunds r join order_items oi on r.order_id = oi.order_id join products p on oi.product_id = p.product_id where r.reason = '质量问题' group by p.product_name order by COUNT(distinct r.refund_id) desc limit 1",
+  "raw_output": "SELECT p.product_name, COUNT(DISTINCT r.refund_id) AS refund_count\nFROM refunds r\nJOIN orders o ON r.order_id = o.order_id\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE r.reason LIKE '%质量问题%'\nGROUP BY p.product_id, p.product_name\nORDER BY refund_count DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT p.product_name, COUNT(DISTINCT r.refund_id) AS refund_count\nFROM refunds r\nJOIN orders o ON r.order_id = o.order_id\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE r.reason LIKE '%质量问题%'\nGROUP BY p.product_id, p.product_name\nORDER BY refund_count DESC\nLIMIT 1;",
+  "pred_error": null
+}

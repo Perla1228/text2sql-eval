@@ -1,0 +1,13 @@
+{
+  "id": 40,
+  "difficulty": "hard",
+  "question": "单价最高的商品卖了多少件",
+  "gold_sql": "SELECT SUM(oi.quantity) FROM order_items oi JOIN products p ON oi.product_id = p.product_id join orders o on oi.order_id = o.order_id where o.status = '已完成' GROUP BY p.product_id ORDER BY p.price DESC LIMIT 1",
+  "raw_output": "SELECT p.product_name,\n       COALESCE(SUM(CASE WHEN o.status = '已完成' THEN oi.quantity ELSE 0 END), 0) AS total_sold\nFROM products p\nLEFT JOIN order_items oi ON p.product_id = oi.product_id\nLEFT JOIN orders o ON oi.order_id = o.order_id\nWHERE p.product_id = (\n    SELECT product_id\n    FROM products\n    ORDER BY price DESC\n    LIMIT 1\n)\nGROUP BY p.product_id, p.product_name;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT p.product_name,\n       COALESCE(SUM(CASE WHEN o.status = '已完成' THEN oi.quantity ELSE 0 END), 0) AS total_sold\nFROM products p\nLEFT JOIN order_items oi ON p.product_id = oi.product_id\nLEFT JOIN orders o ON oi.order_id = o.order_id\nWHERE p.product_id = (\n    SELECT product_id\n    FROM products\n    ORDER BY price DESC\n    LIMIT 1\n)\nGROUP BY p.product_id, p.product_name;",
+  "pred_error": null
+}

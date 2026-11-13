@@ -1,0 +1,13 @@
+{
+  "id": 2,
+  "difficulty": "easy",
+  "question": "注册用户有多少",
+  "gold_sql": "select COUNT(distinct user_id) FROM users WHERE register_date is not null",
+  "raw_output": "SELECT COUNT(*) AS user_count FROM users;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(*) AS user_count FROM users;",
+  "pred_error": null
+}

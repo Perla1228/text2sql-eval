@@ -1,0 +1,13 @@
+{
+  "id": 24,
+  "difficulty": "medium",
+  "question": "用户下单最多的渠道是哪个",
+  "gold_sql": "select c.channel_name from orders o left join channels c on o.channel_id = c.channel_id where o.status = '已完成' group by c.channel_name order by count(distinct o.order_id) desc limit 1",
+  "raw_output": "SELECT c.channel_name, COUNT(*) AS order_count\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nGROUP BY c.channel_id, c.channel_name\nORDER BY order_count DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT c.channel_name, COUNT(*) AS order_count\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nGROUP BY c.channel_id, c.channel_name\nORDER BY order_count DESC\nLIMIT 1;",
+  "pred_error": null
+}

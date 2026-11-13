@@ -1,0 +1,13 @@
+{
+  "id": 21,
+  "difficulty": "medium",
+  "question": "不同地区用户分布情况",
+  "gold_sql": "select r.region_name, count(distinct u.user_id) from users u left join regions r on u.region_id = r.region_id group by 1",
+  "raw_output": "SELECT r.region_name, COUNT(u.user_id) AS user_count\nFROM users u\nJOIN regions r ON u.region_id = r.region_id\nGROUP BY r.region_name\nORDER BY user_count DESC;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT r.region_name, COUNT(u.user_id) AS user_count\nFROM users u\nJOIN regions r ON u.region_id = r.region_id\nGROUP BY r.region_name\nORDER BY user_count DESC;",
+  "pred_error": null
+}

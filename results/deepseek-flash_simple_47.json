@@ -1,0 +1,13 @@
+{
+  "id": 47,
+  "difficulty": "hard",
+  "question": "数码电子类在哪个渠道销量最好",
+  "gold_sql": "SELECT c.channel_name, SUM(oi.quantity) FROM order_items oi join products p on oi.product_id = p.product_id left join orders o on oi.order_id = o.order_id left join channels c on o.channel_id = c.channel_id where p.category_id = 1 AND o.status = '已完成' group by c.channel_name order by SUM(oi.quantity) desc limit 1",
+  "raw_output": "SELECT c.channel_name, SUM(oi.quantity) AS total_quantity\nFROM order_items oi\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories cat ON p.category_id = cat.category_id\nJOIN orders o ON oi.order_id = o.order_id\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE cat.category_name = '数码电子' AND o.status = '已完成'\nGROUP BY c.channel_id, c.channel_name\nORDER BY total_quantity DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT c.channel_name, SUM(oi.quantity) AS total_quantity\nFROM order_items oi\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories cat ON p.category_id = cat.category_id\nJOIN orders o ON oi.order_id = o.order_id\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE cat.category_name = '数码电子' AND o.status = '已完成'\nGROUP BY c.channel_id, c.channel_name\nORDER BY total_quantity DESC\nLIMIT 1;",
+  "pred_error": null
+}

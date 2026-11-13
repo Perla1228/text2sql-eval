@@ -1,0 +1,157 @@
+Database Schema for a Chinese e-commerce system:
+
+
+-- categories
+CREATE TABLE categories (
+            category_id   INTEGER PRIMARY KEY,
+            category_name TEXT NOT NULL
+        );
+
+
+Sample rows from categories (3 rows):
+category_id | category_name
+---------------------------
+1 | 数码电子
+2 | 服饰鞋包
+3 | 美妆护肤
+
+-- channels
+CREATE TABLE channels (
+            channel_id   INTEGER PRIMARY KEY,
+            channel_name TEXT NOT NULL
+        );
+
+
+Sample rows from channels (3 rows):
+channel_id | channel_name
+-------------------------
+1 | APP
+2 | 小程序
+3 | H5
+
+-- order_items
+CREATE TABLE order_items (
+            item_id     INTEGER PRIMARY KEY,
+            order_id    INTEGER,
+            product_id  INTEGER,
+            quantity    INTEGER NOT NULL,
+            unit_price  REAL NOT NULL,
+            subtotal    REAL NOT NULL,
+            FOREIGN KEY (order_id)   REFERENCES orders(order_id),
+            FOREIGN KEY (product_id) REFERENCES products(product_id)
+        );
+
+
+Sample rows from order_items (3 rows):
+item_id | order_id | product_id | quantity | unit_price | subtotal
+------------------------------------------------------------------
+1 | 1 | 12 | 3 | 79.0 | 237.0
+2 | 2 | 20 | 1 | 399.0 | 399.0
+3 | 3 | 3 | 1 | 3299.0 | 3299.0
+
+-- orders
+CREATE TABLE orders (
+            order_id     INTEGER PRIMARY KEY,
+            user_id      INTEGER,
+            channel_id   INTEGER,
+            order_time   TEXT NOT NULL,
+            total_amount REAL NOT NULL,
+            pay_type     TEXT,
+            status       TEXT DEFAULT '已完成',
+            FOREIGN KEY (user_id)    REFERENCES users(user_id),
+            FOREIGN KEY (channel_id) REFERENCES channels(channel_id)
+        );
+
+
+Sample rows from orders (3 rows):
+order_id | user_id | channel_id | order_time | total_amount | pay_type | status
+-------------------------------------------------------------------------------
+1 | 406 | 2 | 2024-09-30 00:00:00 | 237.0 | 银行卡 | 已取消
+2 | 189 | 4 | 2025-07-17 00:00:00 | 399.0 | 微信支付 | 已退款
+3 | 270 | 4 | 2025-06-29 00:00:00 | 4615.0 | 银行卡 | 已完成
+
+-- products
+CREATE TABLE products (
+            product_id   INTEGER PRIMARY KEY,
+            product_name TEXT NOT NULL,
+            category_id  INTEGER,
+            price        REAL NOT NULL,
+            stock        INTEGER DEFAULT 0,
+            FOREIGN KEY (category_id) REFERENCES categories(category_id)
+        );
+
+
+Sample rows from products (3 rows):
+product_id | product_name | category_id | price | stock
+-------------------------------------------------------
+1 | 智能手机 Pro | 1 | 4999.0 | 391
+2 | 无线耳机 | 1 | 599.0 | 227
+3 | 平板电脑 | 1 | 3299.0 | 413
+
+-- refunds
+CREATE TABLE refunds (
+            refund_id    INTEGER PRIMARY KEY,
+            order_id     INTEGER,
+            refund_time  TEXT NOT NULL,
+            refund_amount REAL NOT NULL,
+            reason       TEXT,
+            status       TEXT DEFAULT '已退款',
+            FOREIGN KEY (order_id) REFERENCES orders(order_id)
+        );
+
+
+Sample rows from refunds (3 rows):
+refund_id | order_id | refund_time | refund_amount | reason | status
+--------------------------------------------------------------------
+1 | 2 | 2025-07-26 00:00:00 | 278.93 | 不想要了 | 已退款
+2 | 4 | 2024-08-31 00:00:00 | 378.84 | 七天无理由 | 已退款
+3 | 19 | 2025-08-14 00:00:00 | 4065.98 | 七天无理由 | 已退款
+
+-- regions
+CREATE TABLE regions (
+            region_id   INTEGER PRIMARY KEY,
+            region_name TEXT NOT NULL
+        );
+
+
+Sample rows from regions (3 rows):
+region_id | region_name
+-----------------------
+1 | 华东
+2 | 华南
+3 | 华北
+
+-- users
+CREATE TABLE users (
+            user_id     INTEGER PRIMARY KEY,
+            user_name   TEXT NOT NULL,
+            gender      TEXT,
+            age         INTEGER,
+            region_id   INTEGER,
+            register_date TEXT,
+            FOREIGN KEY (region_id) REFERENCES regions(region_id)
+        );
+
+
+Sample rows from users (3 rows):
+user_id | user_name | gender | age | region_id | register_date
+--------------------------------------------------------------
+1 | 用户0001 | 男 | 19 | 6 | 2024-10-08 00:00:00
+2 | 用户0002 | 男 | 32 | 2 | 2024-04-14 00:00:00
+3 | 用户0003 | 男 | 55 | 4 | 2024-02-02 00:00:00
+
+
+IMPORTANT RULES:
+
+- Use single quotes for string literals: WHERE gender = '女'
+
+- Use strftime('%Y-%m', col) for month-level grouping
+
+- Use julianday(col1) - julianday(col2) to compute date difference in days
+
+- Total sales = SUM(total_amount) FROM orders WHERE status = '已完成'
+
+- Only return SQL, no explanation, no markdown code fences
+
+
+Now answer the user's question with a single SQL query.

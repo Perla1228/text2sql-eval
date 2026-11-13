@@ -1,0 +1,13 @@
+{
+  "id": 27,
+  "difficulty": "medium",
+  "question": "华北地区的用户性别分布如何",
+  "gold_sql": "select u.gender, count(distinct u.user_id) from users u join regions r on u.region_id = r.region_id where r.region_name = '华北' group by u.gender",
+  "raw_output": "SELECT u.gender, COUNT(*) AS user_count\nFROM users u\nJOIN regions r ON u.region_id = r.region_id\nWHERE r.region_name = '华北'\nGROUP BY u.gender;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT u.gender, COUNT(*) AS user_count\nFROM users u\nJOIN regions r ON u.region_id = r.region_id\nWHERE r.region_name = '华北'\nGROUP BY u.gender;",
+  "pred_error": null
+}

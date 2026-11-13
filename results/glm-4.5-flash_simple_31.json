@@ -1,0 +1,13 @@
+{
+  "id": 31,
+  "difficulty": "medium",
+  "question": "哪个地区的销量最高",
+  "gold_sql": "select r.region_name, sum(oi.quantity) from order_items oi join orders o on oi.order_id = o.order_id join users u on o.user_id = u.user_id join regions r on u.region_id = r.region_id where o.status = '已完成' group by r.region_name order by sum(oi.quantity) desc limit 1",
+  "raw_output": "SELECT r.region_name, SUM(o.total_amount) as total_sales\nFROM orders o\nJOIN users u ON o.user_id = u.user_id\nJOIN regions r ON u.region_id = r.region_id\nWHERE o.status = '已完成'\nGROUP BY r.region_name\nORDER BY total_sales DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT r.region_name, SUM(o.total_amount) as total_sales\nFROM orders o\nJOIN users u ON o.user_id = u.user_id\nJOIN regions r ON u.region_id = r.region_id\nWHERE o.status = '已完成'\nGROUP BY r.region_name\nORDER BY total_sales DESC\nLIMIT 1;",
+  "pred_error": null
+}

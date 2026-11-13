@@ -1,0 +1,13 @@
+{
+  "id": 30,
+  "difficulty": "medium",
+  "question": "退款额最高的商品是什么",
+  "gold_sql": "select p.product_name, sum(r.refund_amount) from refunds r join order_items oi on r.order_id = oi.order_id join products p on oi.product_id = p.product_id group by p.product_name order by sum(r.refund_amount) desc limit 1",
+  "raw_output": "SELECT p.product_name, SUM(r.refund_amount) AS total_refund_amount\nFROM refunds r\nJOIN order_items oi ON r.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE r.status = '已退款'\nGROUP BY p.product_id, p.product_name\nORDER BY total_refund_amount DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT p.product_name, SUM(r.refund_amount) AS total_refund_amount\nFROM refunds r\nJOIN order_items oi ON r.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nWHERE r.status = '已退款'\nGROUP BY p.product_id, p.product_name\nORDER BY total_refund_amount DESC\nLIMIT 1;",
+  "pred_error": null
+}

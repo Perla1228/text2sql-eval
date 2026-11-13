@@ -1,0 +1,13 @@
+{
+  "id": 23,
+  "difficulty": "medium",
+  "question": "不同渠道下单用户分布情况",
+  "gold_sql": "select c.channel_name, count(distinct o.user_id) from orders o left join channels c on o.channel_id = c.channel_id group by c.channel_name",
+  "raw_output": "SELECT c.channel_name,\n       COUNT(DISTINCT o.user_id) AS user_count,\n       ROUND(COUNT(DISTINCT o.user_id) * 1.0 /\n             (SELECT COUNT(DISTINCT user_id) FROM orders WHERE status = '已完成'), 4) AS user_ratio\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE o.status = '已完成'\nGROUP BY c.channel_id, c.channel_name\nORDER BY user_count DESC;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT c.channel_name,\n       COUNT(DISTINCT o.user_id) AS user_count,\n       ROUND(COUNT(DISTINCT o.user_id) * 1.0 /\n             (SELECT COUNT(DISTINCT user_id) FROM orders WHERE status = '已完成'), 4) AS user_ratio\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE o.status = '已完成'\nGROUP BY c.channel_id, c.channel_name\nORDER BY user_count DESC;",
+  "pred_error": null
+}

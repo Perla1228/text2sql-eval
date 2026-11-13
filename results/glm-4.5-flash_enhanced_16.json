@@ -1,0 +1,13 @@
+{
+  "id": 16,
+  "difficulty": "medium",
+  "question": "华东地区用户有多少",
+  "gold_sql": "select COUNT(distinct user_id) FROM users join regions on users.region_id = regions.region_id WHERE region_name = '华东'",
+  "raw_output": "SELECT COUNT(*) \nFROM users \nJOIN regions ON users.region_id = regions.region_id \nWHERE regions.region_name = '华东'",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(*) \nFROM users \nJOIN regions ON users.region_id = regions.region_id \nWHERE regions.region_name = '华东'",
+  "pred_error": null
+}

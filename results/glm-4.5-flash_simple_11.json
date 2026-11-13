@@ -1,0 +1,13 @@
+{
+  "id": 11,
+  "difficulty": "easy",
+  "question": "退款金额多少",
+  "gold_sql": "select sum(refund_amount) from refunds where status = '已退款'",
+  "raw_output": "SELECT SUM(refund_amount) FROM refunds;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT SUM(refund_amount) FROM refunds;",
+  "pred_error": null
+}

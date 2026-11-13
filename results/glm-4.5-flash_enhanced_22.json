@@ -1,0 +1,13 @@
+{
+  "id": 22,
+  "difficulty": "medium",
+  "question": "各个品类的库存分布如何",
+  "gold_sql": "select c.category_name, sum(p.stock) from products p left join categories c on p.category_id = c.category_id group by c.category_name",
+  "raw_output": "SELECT \n    c.category_name,\n    COUNT(p.product_id) AS product_count,\n    SUM(p.stock) AS total_stock,\n    AVG(p.stock) AS avg_stock,\n    MIN(p.stock) AS min_stock,\n    MAX(p.stock) AS max_stock\nFROM \n    products p\nJOIN \n    categories c ON p.category_id = c.category_id\nGROUP BY \n    c.category_id, c.category_name\nORDER BY \n    c.category_name;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT \n    c.category_name,\n    COUNT(p.product_id) AS product_count,\n    SUM(p.stock) AS total_stock,\n    AVG(p.stock) AS avg_stock,\n    MIN(p.stock) AS min_stock,\n    MAX(p.stock) AS max_stock\nFROM \n    products p\nJOIN \n    categories c ON p.category_id = c.category_id\nGROUP BY \n    c.category_id, c.category_name\nORDER BY \n    c.category_name;",
+  "pred_error": null
+}

@@ -1,0 +1,13 @@
+{
+  "id": 8,
+  "difficulty": "easy",
+  "question": "平台已完成的订单量有多少",
+  "gold_sql": "SELECT COUNT(*) FROM orders WHERE status = '已完成'",
+  "raw_output": "SELECT COUNT(order_id) FROM orders WHERE status = '已完成'",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(order_id) FROM orders WHERE status = '已完成'",
+  "pred_error": null
+}

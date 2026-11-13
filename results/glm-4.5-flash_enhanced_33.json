@@ -1,0 +1,13 @@
+{
+  "id": 33,
+  "difficulty": "medium",
+  "question": "各个品类的销售额、销量情况分布",
+  "gold_sql": "select c.category_name, sum(oi.subtotal),sum(oi.quantity)from order_items oi left JOIN orders o ON oi.order_id = o.order_id left join products p on oi.product_id = p.product_id left join categories c on p.category_id = c.category_id WHERE o.status = '已完成'group by c.category_name",
+  "raw_output": "SELECT \n    c.category_name AS category,\n    SUM(oi.subtotal) AS sales_amount,\n    SUM(oi.quantity) AS sales_volume\nFROM \n    orders o\nJOIN \n    order_items oi ON o.order_id = oi.order_id\nJOIN \n    products p ON oi.product_id = p.product_id\nJOIN \n    categories c ON p.category_id = c.category_id\nWHERE \n    o.status = '已完成'\nGROUP BY \n    c.category_id, c.category_name\nORDER BY \n    sales_amount DESC",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT \n    c.category_name AS category,\n    SUM(oi.subtotal) AS sales_amount,\n    SUM(oi.quantity) AS sales_volume\nFROM \n    orders o\nJOIN \n    order_items oi ON o.order_id = oi.order_id\nJOIN \n    products p ON oi.product_id = p.product_id\nJOIN \n    categories c ON p.category_id = c.category_id\nWHERE \n    o.status = '已完成'\nGROUP BY \n    c.category_id, c.category_name\nORDER BY \n    sales_amount DESC",
+  "pred_error": null
+}

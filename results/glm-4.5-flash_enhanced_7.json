@@ -1,0 +1,13 @@
+{
+  "id": 7,
+  "difficulty": "easy",
+  "question": "已完成订单的总销售额是多少",
+  "gold_sql": "select sum(total_amount) from orders where status = '已完成'",
+  "raw_output": "SELECT SUM(total_amount) FROM orders WHERE status = '已完成'",
+  "valid_sql": true,
+  "em": true,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT SUM(total_amount) FROM orders WHERE status = '已完成'",
+  "pred_error": null
+}

@@ -1,0 +1,13 @@
+{
+  "id": 50,
+  "difficulty": "hard",
+  "question": "各地区不同退款原因的退款金额分布",
+  "gold_sql": "select r.region_name, re.reason, sum(distinct re.refund_amount) from refunds re left join orders o on re.order_id = o.order_id left join users u on o.user_id = u.user_id left join regions r on u.region_id = r.region_id group by 1,2",
+  "raw_output": "SELECT rg.region_name, rf.reason, SUM(rf.refund_amount) AS total_refund_amount\nFROM refunds rf\nJOIN orders o ON rf.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nJOIN regions rg ON u.region_id = rg.region_id\nWHERE rf.status = '已退款'\nGROUP BY rg.region_name, rf.reason\nORDER BY rg.region_name, total_refund_amount DESC;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT rg.region_name, rf.reason, SUM(rf.refund_amount) AS total_refund_amount\nFROM refunds rf\nJOIN orders o ON rf.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nJOIN regions rg ON u.region_id = rg.region_id\nWHERE rf.status = '已退款'\nGROUP BY rg.region_name, rf.reason\nORDER BY rg.region_name, total_refund_amount DESC;",
+  "pred_error": null
+}

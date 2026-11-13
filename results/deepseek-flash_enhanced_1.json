@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "difficulty": "easy",
+  "question": "30岁以下的女性用户有多少",
+  "gold_sql": "SELECT COUNT(distinct user_id) FROM users WHERE age<30 AND gender='女'",
+  "raw_output": "SELECT COUNT(*) FROM users WHERE gender = '女' AND age < 30;",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(*) FROM users WHERE gender = '女' AND age < 30;",
+  "pred_error": null
+}

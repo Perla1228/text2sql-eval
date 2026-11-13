@@ -1,0 +1,13 @@
+{
+  "id": 17,
+  "difficulty": "medium",
+  "question": "数码电子的商品卖了多少件",
+  "gold_sql": "SELECT SUM(oi.quantity) FROM order_items oi join products p on oi.product_id = p.product_id JOIN orders o ON oi.order_id = o.order_id where category_id = 1 AND o.status = '已完成'",
+  "raw_output": "SELECT SUM(oi.quantity)\nFROM order_items oi\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories c ON p.category_id = c.category_id\nJOIN orders o ON oi.order_id = o.order_id\nWHERE c.category_name = '数码电子' AND o.status = '已完成'",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT SUM(oi.quantity)\nFROM order_items oi\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories c ON p.category_id = c.category_id\nJOIN orders o ON oi.order_id = o.order_id\nWHERE c.category_name = '数码电子' AND o.status = '已完成'",
+  "pred_error": null
+}

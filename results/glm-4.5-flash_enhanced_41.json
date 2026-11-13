@@ -1,0 +1,13 @@
+{
+  "id": 41,
+  "difficulty": "hard",
+  "question": "哪个地区的用户退款数量最多",
+  "gold_sql": "select r.region_name from refunds r left join orders o on r.order_id = o.order_id left join users u on o.user_id = u.user_id left join regions r on u.region_id = r.region_id group by r.region_name order by count(distinct r.refund_id) desc limit 1",
+  "raw_output": "SELECT r.region_name, COUNT(ref.refund_id) AS refund_count\nFROM refunds ref\nJOIN orders o ON ref.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nJOIN regions r ON u.region_id = r.region_id\nGROUP BY r.region_name\nORDER BY refund_count DESC\nLIMIT 1",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT r.region_name, COUNT(ref.refund_id) AS refund_count\nFROM refunds ref\nJOIN orders o ON ref.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nJOIN regions r ON u.region_id = r.region_id\nGROUP BY r.region_name\nORDER BY refund_count DESC\nLIMIT 1",
+  "pred_error": null
+}

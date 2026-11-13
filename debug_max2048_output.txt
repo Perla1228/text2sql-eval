@@ -1,0 +1,9 @@
+﻿[:空]
+[:空]
+[:空]
+Q40:  49.9s  comp= 1427  content= 234字  ✅  [:SELECT SUM(quantity) AS total_quantity
+FROM order_items
+JOIN orders ON order_ite]
+[:空]
+[:空]
+[:空]

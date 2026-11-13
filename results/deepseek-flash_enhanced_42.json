@@ -1,0 +1,13 @@
+{
+  "id": 42,
+  "difficulty": "hard",
+  "question": "已完成订单用户的购买品宽如何（品宽=用户购买的不同品类数的平均值，仅统计已完成订单）",
+  "gold_sql": "SELECT AVG(cnt) FROM (\n    SELECT o.user_id, COUNT(DISTINCT c.category_id) AS cnt\n    FROM orders o\n    JOIN order_items oi ON o.order_id = oi.order_id\n    JOIN products p ON oi.product_id = p.product_id\n    JOIN categories c ON p.category_id = c.category_id\n    WHERE o.status = '已完成'\n    GROUP BY o.user_id\n)",
+  "raw_output": "SELECT AVG(cnt) FROM (\n    SELECT o.user_id, COUNT(DISTINCT c.category_id) AS cnt\n    FROM orders o\n    JOIN order_items oi ON o.order_id = oi.order_id\n    JOIN products p ON oi.product_id = p.product_id\n    JOIN categories c ON p.category_id = c.category_id\n    WHERE o.status = '已完成'\n    GROUP BY o.user_id\n)",
+  "valid_sql": true,
+  "em": true,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT AVG(cnt) FROM (\n    SELECT o.user_id, COUNT(DISTINCT c.category_id) AS cnt\n    FROM orders o\n    JOIN order_items oi ON o.order_id = oi.order_id\n    JOIN products p ON oi.product_id = p.product_id\n    JOIN categories c ON p.category_id = c.category_id\n    WHERE o.status = '已完成'\n    GROUP BY o.user_id\n)",
+  "pred_error": null
+}

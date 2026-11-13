@@ -1,0 +1,13 @@
+{
+  "id": 15,
+  "difficulty": "easy",
+  "question": "客单价多少",
+  "gold_sql": "select sum(total_amount) / count(distinct order_id) from orders where status = '已完成'",
+  "raw_output": "SELECT SUM(total_amount) / COUNT(DISTINCT user_id) \nFROM orders \nWHERE status = '已完成'",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT SUM(total_amount) / COUNT(DISTINCT user_id) \nFROM orders \nWHERE status = '已完成'",
+  "pred_error": null
+}

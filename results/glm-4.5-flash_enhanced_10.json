@@ -1,0 +1,13 @@
+{
+  "id": 10,
+  "difficulty": "easy",
+  "question": "卖出商品有多少件",
+  "gold_sql": "select sum(quantity) from order_items oi JOIN orders o ON oi.order_id = o.order_id WHERE o.status = '已完成'",
+  "raw_output": "SELECT SUM(oi.quantity) FROM orders o JOIN order_items oi ON o.order_id = oi.order_id WHERE o.status = '已完成'",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT SUM(oi.quantity) FROM orders o JOIN order_items oi ON o.order_id = oi.order_id WHERE o.status = '已完成'",
+  "pred_error": null
+}

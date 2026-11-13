@@ -1,0 +1,13 @@
+{
+  "id": 37,
+  "difficulty": "hard",
+  "question": "退款金额占销售额的比例（退款率，按退款时间口径，分子是已成功退款的金额，分母是对应周期内有交易的订单销售额）",
+  "gold_sql": "SELECT SUM(r.refund_amount) * 1.0 /\n    (SELECT SUM(total_amount) FROM orders WHERE status IN ('已完成', '已退款'))\nFROM refunds r\nWHERE r.status = '已退款'",
+  "raw_output": "SELECT SUM(r.refund_amount) * 1.0 / \n       (SELECT SUM(o.total_amount) \n        FROM orders o \n        WHERE o.status = '已完成' \n          AND strftime('%Y-%m', o.order_time) IN (\n              SELECT DISTINCT strftime('%Y-%m', r2.refund_time) \n              FROM refunds r2 \n              WHERE r2.status = '已退款'\n          )\n       ) \nFROM refunds r \nWHERE r.status = '已退款'",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT SUM(r.refund_amount) * 1.0 / \n       (SELECT SUM(o.total_amount) \n        FROM orders o \n        WHERE o.status = '已完成' \n          AND strftime('%Y-%m', o.order_time) IN (\n              SELECT DISTINCT strftime('%Y-%m', r2.refund_time) \n              FROM refunds r2 \n              WHERE r2.status = '已退款'\n          )\n       ) \nFROM refunds r \nWHERE r.status = '已退款'",
+  "pred_error": null
+}

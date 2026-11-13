@@ -1,0 +1,13 @@
+{
+  "id": 47,
+  "difficulty": "hard",
+  "question": "数码电子类在哪个渠道销量最好",
+  "gold_sql": "SELECT c.channel_name, SUM(oi.quantity) FROM order_items oi join products p on oi.product_id = p.product_id left join orders o on oi.order_id = o.order_id left join channels c on o.channel_id = c.channel_id where p.category_id = 1 AND o.status = '已完成' group by c.channel_name order by SUM(oi.quantity) desc limit 1",
+  "raw_output": "SELECT ch.channel_name\nFROM orders o\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories c ON p.category_id = c.category_id\nJOIN channels ch ON o.channel_id = ch.channel_id\nWHERE c.category_name = '数码电子' AND o.status = '已完成'\nGROUP BY ch.channel_name\nORDER BY SUM(oi.quantity) DESC\nLIMIT 1",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT ch.channel_name\nFROM orders o\nJOIN order_items oi ON o.order_id = oi.order_id\nJOIN products p ON oi.product_id = p.product_id\nJOIN categories c ON p.category_id = c.category_id\nJOIN channels ch ON o.channel_id = ch.channel_id\nWHERE c.category_name = '数码电子' AND o.status = '已完成'\nGROUP BY ch.channel_name\nORDER BY SUM(oi.quantity) DESC\nLIMIT 1",
+  "pred_error": null
+}

@@ -1,0 +1,13 @@
+{
+  "id": 48,
+  "difficulty": "hard",
+  "question": "每月各品类销售金额",
+  "gold_sql": "select substr(o.order_time, 1, 7) as month, c.category_name, sum(oi.subtotal) from orders o join order_items oi on o.order_id = oi.order_id join products p on oi.product_id = p.product_id join categories c on p.category_id = c.category_id where o.status = '已完成' group by 1, 2",
+  "raw_output": "SELECT strftime('%Y-%m', orders.order_time) AS month, categories.category_name, SUM(order_items.subtotal) AS total_sales FROM orders JOIN order_items ON orders.order_id = order_items.order_id JOIN products ON order_items.product_id = products.product_id JOIN categories ON products.category_id = categories.category_id WHERE orders.status = '已完成' GROUP BY month, categories.category_name ORDER BY month, categories.category_name",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT strftime('%Y-%m', orders.order_time) AS month, categories.category_name, SUM(order_items.subtotal) AS total_sales FROM orders JOIN order_items ON orders.order_id = order_items.order_id JOIN products ON order_items.product_id = products.product_id JOIN categories ON products.category_id = categories.category_id WHERE orders.status = '已完成' GROUP BY month, categories.category_name ORDER BY month, categories.category_name",
+  "pred_error": null
+}

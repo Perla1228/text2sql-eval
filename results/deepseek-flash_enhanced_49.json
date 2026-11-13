@@ -1,0 +1,13 @@
+{
+  "id": 49,
+  "difficulty": "hard",
+  "question": "各地区订单状态分布情况",
+  "gold_sql": "select r.region_name, o.status, count(distinct o.order_id) from orders o left join users u on o.user_id = u.user_id left join regions r on u.region_id = r.region_id group by 1,2",
+  "raw_output": "WITH region_status AS (\n    SELECT r.region_name,\n           o.status,\n           COUNT(*) AS order_count\n    FROM orders o\n    JOIN users u ON o.user_id = u.user_id\n    JOIN regions r ON u.region_id = r.region_id\n    GROUP BY r.region_name, o.status\n)\nSELECT region_name,\n       status,\n       order_count,\n       ROUND(order_count * 100.0 / SUM(order_count) OVER (PARTITION BY region_name), 2) AS pct\nFROM region_status\nORDER BY region_name, order_count DESC;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "WITH region_status AS (\n    SELECT r.region_name,\n           o.status,\n           COUNT(*) AS order_count\n    FROM orders o\n    JOIN users u ON o.user_id = u.user_id\n    JOIN regions r ON u.region_id = r.region_id\n    GROUP BY r.region_name, o.status\n)\nSELECT region_name,\n       status,\n       order_count,\n       ROUND(order_count * 100.0 / SUM(order_count) OVER (PARTITION BY region_name), 2) AS pct\nFROM region_status\nORDER BY region_name, order_count DESC;",
+  "pred_error": null
+}

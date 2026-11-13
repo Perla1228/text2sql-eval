@@ -1,0 +1,13 @@
+{
+  "id": 25,
+  "difficulty": "medium",
+  "question": "APP内销量最高的商品是什么",
+  "gold_sql": "select p.product_name from order_items oi join products p on oi.product_id = p.product_id join orders o on oi.order_id = o.order_id join channels c on o.channel_id = c.channel_id where c.channel_name = 'APP' AND o.status = '已完成' group by p.product_name order by sum(oi.quantity) desc limit 1",
+  "raw_output": "SELECT p.product_name, SUM(oi.quantity) AS total_quantity\nFROM order_items oi\nJOIN orders o ON oi.order_id = o.order_id\nJOIN products p ON oi.product_id = p.product_id\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE c.channel_name = 'APP'\nGROUP BY p.product_id, p.product_name\nORDER BY total_quantity DESC\nLIMIT 1;",
+  "pred_sql": "SELECT p.product_name, SUM(oi.quantity) AS total_quantity\nFROM order_items oi\nJOIN orders o ON oi.order_id = o.order_id\nJOIN products p ON oi.product_id = p.product_id\nJOIN channels c ON o.channel_id = c.channel_id\nWHERE c.channel_name = 'APP'\nGROUP BY p.product_id, p.product_name\nORDER BY total_quantity DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_error": null
+}

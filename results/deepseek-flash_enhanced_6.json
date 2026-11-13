@@ -1,0 +1,13 @@
+{
+  "id": 6,
+  "difficulty": "easy",
+  "question": "有库存的产品都是哪些？",
+  "gold_sql": "select product_name from products where stock>0",
+  "raw_output": "SELECT product_id, product_name, stock FROM products WHERE stock > 0 ORDER BY product_id;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT product_id, product_name, stock FROM products WHERE stock > 0 ORDER BY product_id;",
+  "pred_error": null
+}

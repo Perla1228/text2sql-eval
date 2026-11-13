@@ -1,0 +1,13 @@
+{
+  "id": 14,
+  "difficulty": "easy",
+  "question": "最贵的商品是什么",
+  "gold_sql": "SELECT product_name FROM products ORDER BY price DESC LIMIT 1;",
+  "raw_output": "SELECT product_name, price\nFROM products\nORDER BY price DESC\nLIMIT 1",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT product_name, price\nFROM products\nORDER BY price DESC\nLIMIT 1",
+  "pred_error": null
+}

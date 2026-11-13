@@ -1,0 +1,13 @@
+{
+  "id": 26,
+  "difficulty": "medium",
+  "question": "男性用户最喜欢购买的商品是什么",
+  "gold_sql": "select p.product_name from order_items oi join products p on oi.product_id = p.product_id join orders o on oi.order_id = o.order_id join users u on o.user_id = u.user_id where u.gender = '男' AND o.status = '已完成' group by p.product_name order by sum(oi.quantity) desc limit 1",
+  "raw_output": "SELECT \n    p.product_name,\n    SUM(oi.quantity) AS total_quantity\nFROM \n    users u\nJOIN \n    orders o ON u.user_id = o.user_id\nJOIN \n    order_items oi ON o.order_id = oi.order_id\nJOIN \n    products p ON oi.product_id = p.product_id\nWHERE \n    u.gender = '男'\nGROUP BY \n    p.product_id, p.product_name\nORDER BY \n    total_quantity DESC\nLIMIT 1;",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": true,
+  "pred_sql": "SELECT \n    p.product_name,\n    SUM(oi.quantity) AS total_quantity\nFROM \n    users u\nJOIN \n    orders o ON u.user_id = o.user_id\nJOIN \n    order_items oi ON o.order_id = oi.order_id\nJOIN \n    products p ON oi.product_id = p.product_id\nWHERE \n    u.gender = '男'\nGROUP BY \n    p.product_id, p.product_name\nORDER BY \n    total_quantity DESC\nLIMIT 1;",
+  "pred_error": null
+}

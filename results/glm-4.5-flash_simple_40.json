@@ -1,0 +1,13 @@
+{
+  "id": 40,
+  "difficulty": "hard",
+  "question": "单价最高的商品卖了多少件",
+  "gold_sql": "SELECT SUM(oi.quantity) FROM order_items oi JOIN products p ON oi.product_id = p.product_id join orders o on oi.order_id = o.order_id where o.status = '已完成' GROUP BY p.product_id ORDER BY p.price DESC LIMIT 1",
+  "raw_output": "SELECT oi.quantity FROM order_items oi JOIN products p ON oi.product_id = p.product_id WHERE p.price = (SELECT MAX(price) FROM products)",
+  "pred_sql": "SELECT oi.quantity FROM order_items oi JOIN products p ON oi.product_id = p.product_id WHERE p.price = (SELECT MAX(price) FROM products)",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_error": null
+}

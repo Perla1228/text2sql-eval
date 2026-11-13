@@ -1,0 +1,13 @@
+{
+  "id": 5,
+  "difficulty": "easy",
+  "question": "有多少产品类目？",
+  "gold_sql": "select count(distinct category_id) from products where stock>0",
+  "raw_output": "SELECT COUNT(*) FROM categories",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT COUNT(*) FROM categories",
+  "pred_error": null
+}

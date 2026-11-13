@@ -1,0 +1,13 @@
+{
+  "id": 43,
+  "difficulty": "hard",
+  "question": "用户次日内、7日内、30日内退款率分别如何",
+  "gold_sql": "SELECT\n  COUNT(CASE WHEN julianday(r.refund_time) - julianday(o.order_time) <= 1 THEN 1 END) * 1.0 / COUNT(DISTINCT o.order_id) AS next_day_refund_rate,\n  COUNT(CASE WHEN julianday(r.refund_time) - julianday(o.order_time) <= 7 THEN 1 END) * 1.0 / COUNT(DISTINCT o.order_id) AS within_7days_refund_rate,\n  COUNT(CASE WHEN julianday(r.refund_time) - julianday(o.order_time) <= 30 THEN 1 END) * 1.0 / COUNT(DISTINCT o.order_id) AS within_30days_refund_rate\nFROM orders o\nLEFT JOIN refunds r ON o.order_id = r.order_id\nWHERE r.status = '已退款' OR r.refund_id IS NULL",
+  "raw_output": "",
+  "valid_sql": false,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "",
+  "pred_error": "empty_sql"
+}

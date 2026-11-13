@@ -1,0 +1,13 @@
+{
+  "id": 40,
+  "difficulty": "hard",
+  "question": "单价最高的商品卖了多少件",
+  "gold_sql": "SELECT SUM(oi.quantity) FROM order_items oi JOIN products p ON oi.product_id = p.product_id join orders o on oi.order_id = o.order_id where o.status = '已完成' GROUP BY p.product_id ORDER BY p.price DESC LIMIT 1",
+  "raw_output": "SELECT COALESCE(SUM(oi.quantity), 0) AS sold_quantity\nFROM order_items oi\nJOIN orders o ON oi.order_id = o.order_id\nWHERE o.status = '已完成'\n  AND oi.product_id IN (\n      SELECT product_id\n      FROM products\n      WHERE",
+  "valid_sql": false,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_sql": "SELECT COALESCE(SUM(oi.quantity), 0) AS sold_quantity\nFROM order_items oi\nJOIN orders o ON oi.order_id = o.order_id\nWHERE o.status = '已完成'\n  AND oi.product_id IN (\n      SELECT product_id\n      FROM products\n      WHERE",
+  "pred_error": "incomplete input"
+}

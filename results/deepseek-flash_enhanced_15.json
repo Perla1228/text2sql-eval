@@ -1,0 +1,13 @@
+{
+  "id": 15,
+  "difficulty": "easy",
+  "question": "客单价多少",
+  "gold_sql": "select sum(total_amount) / count(distinct order_id) from orders where status = '已完成'",
+  "raw_output": "SELECT AVG(total_amount) AS 客单价\nFROM orders\nWHERE status = '已完成'",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT AVG(total_amount) AS 客单价\nFROM orders\nWHERE status = '已完成'",
+  "pred_error": null
+}

@@ -1,0 +1,13 @@
+{
+  "id": 46,
+  "difficulty": "hard",
+  "question": "华东区域不同支付方式的24年12月31日退款率分布情况",
+  "gold_sql": "select o.pay_type, count(distinct re.refund_id) * 1.0 / count(distinct o.order_id) from orders o join users u on o.user_id = u.user_id join regions r on u.region_id = r.region_id left join refunds re on o.order_id = re.order_id and re.refund_time >= '2024-12-31' and re.refund_time < '2025-01-01' where r.region_name = '华东' group by o.pay_type",
+  "raw_output": "SELECT \n    pay_type,\n    SUM(r.refund_amount) * 1.0 / \n        (SELECT SUM(total_amount) \n         FROM orders \n         WHERE status IN ('已完成', '已退款') \n         AND region_id = 1 \n         AND strftime('%Y-%m', order_time) = '2024-12') AS refund_rate\nFROM refunds r\nJOIN orders o ON r.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nWHERE u.region_id = 1\nAND strftime('%Y-%m', r.refund_time) = '2024-12'\nGROUP BY pay_type",
+  "pred_sql": "SELECT \n    pay_type,\n    SUM(r.refund_amount) * 1.0 / \n        (SELECT SUM(total_amount) \n         FROM orders \n         WHERE status IN ('已完成', '已退款') \n         AND region_id = 1 \n         AND strftime('%Y-%m', order_time) = '2024-12') AS refund_rate\nFROM refunds r\nJOIN orders o ON r.order_id = o.order_id\nJOIN users u ON o.user_id = u.user_id\nWHERE u.region_id = 1\nAND strftime('%Y-%m', r.refund_time) = '2024-12'\nGROUP BY pay_type",
+  "valid_sql": true,
+  "em": false,
+  "ex": false,
+  "ex_answer": false,
+  "pred_error": null
+}

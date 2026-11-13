@@ -1,0 +1,12 @@
+# 核心评测框架
+evalscope>=1.0.0
+
+# 数据与报告
+pandas>=2.0.0
+
+# 应用
+streamlit>=1.30.0
+
+# 环境与测试
+python-dotenv>=1.0.0
+pytest>=8.0.0

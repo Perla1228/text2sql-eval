@@ -1,0 +1,13 @@
+{
+  "id": 23,
+  "difficulty": "medium",
+  "question": "不同渠道下单用户分布情况",
+  "gold_sql": "select c.channel_name, count(distinct o.user_id) from orders o left join channels c on o.channel_id = c.channel_id group by c.channel_name",
+  "raw_output": "SELECT c.channel_name, COUNT(DISTINCT o.user_id) AS user_count\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nGROUP BY c.channel_name",
+  "valid_sql": true,
+  "em": false,
+  "ex": true,
+  "ex_answer": true,
+  "pred_sql": "SELECT c.channel_name, COUNT(DISTINCT o.user_id) AS user_count\nFROM orders o\nJOIN channels c ON o.channel_id = c.channel_id\nGROUP BY c.channel_name",
+  "pred_error": null
+}
